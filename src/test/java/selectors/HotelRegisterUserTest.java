@@ -1,6 +1,5 @@
 package pl.coderslab.seleniumexample.selectors;
 
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,8 +11,10 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HotelRegisterUserTest {
-    @Test
+// Zadanie 1
+//Funkcje
+//Będąc na stronie rejestracji nowego użytkownika
+@@ -26,8 +29,9 @@ public class HotelRegisterUserTest {
     public void selectAndFillElements() {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
@@ -35,5 +36,3 @@ public class HotelRegisterUserTest {
             assertEquals("Your account has been created.", panelText);
         }
     }
-
-
