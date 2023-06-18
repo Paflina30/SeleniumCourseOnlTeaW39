@@ -9,37 +9,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class HotelRegisterUserTest {
     @Test
     public void selectAndFillElements() {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
+        // given
         driver.get("https://hotel-testlab.coderslab.pl/en/");
+        // when
         WebElement signInButton = driver.findElement(By.cssSelector("a.user_login.navigation-link"));
         signInButton.click();
 
-        WebElement emailInputBox = driver.findElement(By.id("email_create"));
-        String randomEmail = pl.coderslab.seleniumexample.selectors.Utils.randomEmail();
-        emailInputBox.sendKeys(randomEmail);
-        WebElement createAnAccountButton = driver.findElement(By.id("SubmitCreate"));
-        createAnAccountButton.click();
+        @@ -54,5 +58,10 @@ public void selectAndFillElements() {
 
-        //First Name
-        WebElement firstNameInputBox  = driver.findElement(By.id("customer_firstname"));
-        firstNameInputBox.sendKeys("Ala");
-
-        WebElement lastNameInputBox  = driver.findElement(By.id("customer_lastname"));
-        lastNameInputBox.sendKeys("Makota");
-
-        WebElement customerEmailInputBox  = driver.findElement(By.id("email"));
-
-        WebElement passwordInputBox  = driver.findElement(By.id("passwd"));
-        passwordInputBox.sendKeys("haslo123");
-
-        WebElement registerButton  = driver.findElement(By.id("submitAccount"));
-        registerButton.click();
+            WebElement registerButton  = driver.findElement(By.id("submitAccount"));
+            registerButton.click();
+            // then
+            WebElement accountCreationSuccessfulPanel = driver.findElement(By.cssSelector("p.alert.alert-success"));
+            assertTrue(accountCreationSuccessfulPanel.isDisplayed());
+            String panelText = accountCreationSuccessfulPanel.getText();
+            assertEquals("Your account has been created.", panelText);
+        }
     }
-}
 
 
